@@ -17,20 +17,16 @@ monthly_challenges_text = {
     "september": "This is month of September",
     "october": "This is month of October",
     "november": "This is month of November",
-    "december": "This is month of December"
+    "december": None
 }
 
 
 def index(request):
-    list_items = ""
     months = list(monthly_challenges_text.keys())
 
-    for month in months:
-        capitalize_month = month.capitalize()
-        url_path = reverse("month-challenge", args=[month])
-        list_items += f"<li><a href='{url_path}'>{capitalize_month}</a></li>"
-    response = f'<ul>{list_items}</ul>'
-    return HttpResponse(response)
+    return render(request, "challenges/index.html", {
+        "months": months
+    })
 
 
 def monthly_challenges_by_number(request, month):
@@ -44,6 +40,10 @@ def monthly_challenges_by_number(request, month):
 
 def monthly_challenges(request, month):
     try:
-        return render(request, 'challenges/challenges.html')
+        challenge_text = monthly_challenges_text[month]
+        return render(request, 'challenges/challenges.html', {
+            "challenges_text": challenge_text,
+            "month": month
+        })
     except:
         return HttpResponseNotFound("Url not found")
