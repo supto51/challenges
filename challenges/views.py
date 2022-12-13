@@ -41,7 +41,7 @@ def monthly_challenges_by_number(request, month):
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenges_text[month]
-        return render(request, 'challenges/challenges.html', {
+        return render(request, 'challenges/challenge.html', {
             "challenges_text": challenge_text,
             "month": month
         })

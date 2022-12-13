@@ -2,6 +2,12 @@
 
 {% block page_title %} All Months {% endblock %} 
 
+{% load static %}
+
+{% block css_files %} 
+  <link rel="stylesheet" href="{% static 'challenges/challenges.css' %}">
+{% endblock %}
+
 {% block content %}
 {% include "./includes/header.html" %}
 

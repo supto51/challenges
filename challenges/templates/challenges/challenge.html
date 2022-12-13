@@ -1,0 +1,17 @@
+{% extends "base.html" %} 
+{% block page_title %} {{ month | title }} {% endblock %} 
+{% block content %} 
+
+{% load static  %}
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'challenges/challenge.css' %}">
+{% endblock %}
+
+{% include "./includes/header.html" %}
+
+<h1>{{ month | title }} Challenges!</h1>
+{% if challenges_text is not None %}
+<h2>{{ challenges_text }}</h2>
+{% else %}
+<h2 class="fallback">There is no Challenges!</>
+{% endif %} {% endblock %}
